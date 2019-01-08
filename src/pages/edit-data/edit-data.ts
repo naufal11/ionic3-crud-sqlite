@@ -26,7 +26,7 @@ export class EditDataPage {
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, private toast: Toast) {
-
+    this.getCurrentData(navParams.get("rowid"));
   }
 
   // ionViewDidLoad() {
