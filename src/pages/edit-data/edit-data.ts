@@ -74,7 +74,7 @@ export class EditDataPage {
       db.executeSql('UPDATE expense SET date=?, type=?, description=?, amount=? WHERE rowid=?', [this.data.date, this.data.type, this.data.description, this.data.amount, this.data.rowid])
         .then(res => {
           console.log(res);
-          this.toast.show('Data Updated', '5000', 'center').subscribe(
+          this.toast.show('Data '+ this.data.description +' has been updated', '5000', 'center').subscribe(
             toast => {
               this.navCtrl.popToRoot();
             }

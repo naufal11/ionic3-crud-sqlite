@@ -41,7 +41,7 @@ export class AddDataPage {
       db.executeSql('INSERT INTO expense VALUES(NULL, ?, ?, ?, ?)', [this.data.date, this.data.type, this.data.description, this.data.amount])
         .then(res => {
           console.log(res);
-          this.toast.show('Data saved', '5000', 'center').subscribe(
+          this.toast.show('Data '+ this.data.description +' has been saved', '5000', 'center').subscribe(
             toast => {
               this.navCtrl.popToRoot();
             }

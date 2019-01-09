@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { AddDataPage } from '../add-data/add-data';
 import { EditDataPage } from '../edit-data/edit-data';
+import { Toast } from '@ionic-native/toast';
 
 @Component({
   selector: 'page-home',
@@ -15,7 +16,7 @@ export class HomePage {
   totalExpense = 0;
   balance = 0;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite, private toast: Toast) {
 
   }
 
@@ -85,6 +86,11 @@ export class HomePage {
       db.executeSql('DELETE FROM expense WHERE rowid=?', [rowid])
         .then(res => {
           console.log(res);
+          this.toast.show('Data has been deleted', '5000', 'center').subscribe(
+            toast => {
+              this.navCtrl.popToRoot();
+            }
+          );
           this.getData();
         })
         .catch(e => console.log(e));
